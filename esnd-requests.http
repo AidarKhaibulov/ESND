@@ -3,7 +3,7 @@ POST http://localhost:8080/api/v1/auth/authenticate
 Content-Type: application/json
 
 {
-  "email": "1234234",
+  "email": "12@mail.com",
   "password": "12укеукук3"
 }
 
@@ -32,8 +32,8 @@ POST http://localhost:8080/api/v1/auth/register
 Content-Type: application/json
 
 {
-  "username": "1111111",
-  "email": "12@mail.com",
+  "username": "11111",
+  "email": "123@mail.com",
   "password": "12укеукук3",
   "role": "USER"
 }
@@ -66,7 +66,7 @@ Content-Type: application/json
 
 ###
 POST http://localhost:8080/order
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMTExMTExIiwiaWF0IjoxNzI4MDcxMTQ0LCJleHAiOjE3MjgxNTc1NDR9.vyByksNg-U4YPPAjjBpM5seUfsBalvS2D8p7Z5pErvk
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMTExMSIsImlhdCI6MTcyODA3NjUyMCwiZXhwIjoxNzI4MTYyOTIwfQ.796bDPzjN2lBGNdYz-djNqoRmfAwuhwyTL0Vni2ScT4
 Content-Type: application/json
 
 {
@@ -76,20 +76,20 @@ Content-Type: application/json
 ###
 POST http://localhost:8080/order/cancel
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMTExMTExIiwiaWF0IjoxNzI4MDcxMTQ0LCJleHAiOjE3MjgxNTc1NDR9.vyByksNg-U4YPPAjjBpM5seUfsBalvS2D8p7Z5pErvk
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMTExMSIsImlhdCI6MTcyODA3NjUyMCwiZXhwIjoxNzI4MTYyOTIwfQ.796bDPzjN2lBGNdYz-djNqoRmfAwuhwyTL0Vni2ScT4
 
 {
-  "orderId": 2,
-  "userId": 2
+  "orderId": 1,
+  "userId": 3
 }
 
 
 ###
 GET http://localhost:8080/order/canceled
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMTExMTExIiwiaWF0IjoxNzI3ODA1MjQzLCJleHAiOjE3Mjc4OTE2NDN9.Mt-1qd6gkeXZE-66cWif4xDgn6nDOharTOj0DjxV_TY
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMTExMSIsImlhdCI6MTcyODA3NjUyMCwiZXhwIjoxNzI4MTYyOTIwfQ.796bDPzjN2lBGNdYz-djNqoRmfAwuhwyTL0Vni2ScT4
 Content-Type: application/json
 
 {
-"orderId": 2,
-"userId": 2
+"orderId": 1,
+"userId": 3
 }
