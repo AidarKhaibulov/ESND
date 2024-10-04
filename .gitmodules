@@ -1,0 +1,6 @@
+[submodule "user-service"]
+	path = user-service
+	url = git@github.com:AidarKhaibulov/user-service.git
+[submodule "order-service"]
+	path = order-service
+	url = git@github.com:AidarKhaibulov/order-service.git

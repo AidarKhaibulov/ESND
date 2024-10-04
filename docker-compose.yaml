@@ -1,0 +1,104 @@
+version: '3.8'
+
+services:
+  user-service:
+    container_name: user
+    build:
+      context: ./user-service/image
+      dockerfile: Dockerfile
+    command: java -jar ./app.jar
+    networks:
+      - private-network
+    ports:
+      - "8080:8080"
+    image: 'user-service'
+    depends_on:
+      - user-database
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://user-database:5600/user-service-base
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      SECRET_KEY: 53A73E5F1C4E0A2D3B5F2D784E6A1B423D6F247D1F6E5C3A596D635A75327855
+      EXPIRATION: 86400000
+      EXPIRATION_REFRESH: 604800000
+
+  user-database:
+    image: postgres:16
+    container_name: user-database
+    environment:
+      POSTGRES_DB: user-service-base
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5600:5600"
+    volumes:
+      - user-postgres-data:/var/lib/postgresql/data
+    command: postgres -p 5600
+    networks:
+      - private-network
+
+
+  # order service
+  order-service:
+    container_name: order
+    build:
+      context: ./order-service/image
+      dockerfile: Dockerfile
+    command: java -jar ./app.jar
+    ports:
+      - "8070:8070"
+    image: 'order-service'
+    networks:
+      - private-network
+    depends_on:
+      order-redis:
+        condition: service_healthy
+      order-database:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://order-database:5500/order-service-base
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+  order-database:
+    image: postgres:16
+    container_name: order-database
+    ports:
+      - "5500:5500"
+    environment:
+      POSTGRES_DB: order-service-base
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - order-postgres-data:/var/lib/postgresql/data
+    command: postgres -p 5500
+    networks:
+      - private-network
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready", "-d", "db_prod" ]
+      interval: 30s
+      timeout: 60s
+      retries: 5
+      start_period: 80s
+
+  order-redis:
+    container_name: order-redis
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    networks:
+      - private-network
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 1s
+      timeout: 2s
+      retries: 5
+
+volumes:
+  user-postgres-data:
+  order-postgres-data:
+  redis-data:
+
+networks:
+  private-network:
+    driver: bridge
