@@ -31,18 +31,18 @@ jobs:
           cd main-repo
           git checkout main 
 
-      - name: Update user-service submodule
+      - name: Update user-service submodule to latest commit
         run: |
           cd main-repo
-          git submodule update --init --recursive user-service
+          git submodule update --remote user-service
           git add user-service
           git commit -m "Update user-service" || exit 0
           git push
 
-      - name: Update order-service submodule
+      - name: Update order-service submodule to latest commit
         run: |
           cd main-repo
-          git submodule update --init --recursive order-service
+          git submodule update --remote order-service
           git add order-service
           git commit -m "Update order-service" || exit 0
           git push
