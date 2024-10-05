@@ -13,11 +13,18 @@ jobs:
       - name: Checkout user-service
         uses: actions/checkout@v2
 
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+
       - name: Checkout main repo
         run: |
           git clone git@github.com:AidarKhaibulov/E.git main-repo
           cd main-repo
-          git checkout main  
+          git checkout main 
 
       - name: Update submodule
         run: |
