@@ -22,7 +22,7 @@ jobs:
 
       - name: Checkout main repo
         run: |
-          git clone git@github.com:AidarKhaibulov/E.git main-repo
+          git clone git@github.com:AidarKhaibulov/ESND.git main-repo
           cd main-repo
           git checkout main 
 
