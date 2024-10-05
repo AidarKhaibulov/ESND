@@ -3,7 +3,7 @@ name: Update Main Repo
 on:
   push:
     branches:
-      - main  # Укажите вашу ветку, если это другая ветка
+      - main
 
 jobs:
   update-main-repo:
@@ -26,10 +26,18 @@ jobs:
           cd main-repo
           git checkout main 
 
-      - name: Update submodule
+      - name: Update user-service submodule
         run: |
           cd main-repo
-          git submodule update --init --recursive
+          git submodule update --init --recursive user-service
           git add user-service
           git commit -m "Обновлен подмодуль user-service" || exit 0
+          git push
+
+      - name: Update order-service submodule
+        run: |
+          cd main-repo
+          git submodule update --init --recursive order-service
+          git add order-service
+          git commit -m "Обновлен подмодуль order-service" || exit 0
           git push
