@@ -30,14 +30,14 @@ jobs:
       - name: Build user-service
         run: |
           cd user-service
-          ./gradlew wrapper --gradle-version 8.5
+          ./gradlew wrapper --gradle-version 8.5  # Обновляем до Gradle 8.5
           ./gradlew build
 
       - name: Build order-service
         run: |
           cd order-service
-          ./gradlew wrapper --gradle-version 8.5
-          ./gradlew build
+          ./gradlew wrapper --gradle-version 8.5  # Обновляем до Gradle 8.5
+          ./gradlew build  # Собираем проект
 
       - name: Setup Docker
         run: |
