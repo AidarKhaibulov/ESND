@@ -1,0 +1,3 @@
+rootProject.name = 'esnd'
+
+include 'user-service', 'order-service'
