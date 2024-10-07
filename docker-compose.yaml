@@ -4,7 +4,7 @@ services:
   user-service:
     container_name: user
     build:
-      context: ./user-service/image
+      context: ./user-service
       dockerfile: Dockerfile
     command: java -jar ./app.jar
     networks:
@@ -42,7 +42,7 @@ services:
   order-service:
     container_name: order
     build:
-      context: ./order-service/image
+      context: ./order-service
       dockerfile: Dockerfile
     command: java -jar ./app.jar
     ports:
