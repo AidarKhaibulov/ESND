@@ -18,20 +18,11 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y docker-compose
 
-      - name: Show current working directory
-        run: pwd  # Покажет текущую директорию
+      - name: List user-service directory
+        run: ls -la user-service
 
-      - name: List files in the current directory
-        run: ls -la  # Выведет все файлы и папки в текущей директории
-
-      - name: Try to list ESND folder
-        run: |
-          if [ -d "ESND" ]; then
-            echo "ESND directory exists!"
-            ls -la ESND
-          else
-            echo "ESND directory does not exist!"
-          fi   
+      - name: List order-service directory
+        run: ls -la order-service
 
       - name: Build and run services with Docker Compose
         run: |
