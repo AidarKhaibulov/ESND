@@ -13,8 +13,8 @@ jobs:
       - name: Checkout code with submodules
         uses: actions/checkout@v2
         with:
-          submodules: true  # Клонирование подмодулей
-          fetch-depth: 0     # Полное клонирование, чтобы подмодули были корректно захвачены
+          submodules: true
+          fetch-depth: 0
 
       - name: Initialize and update submodules
         run: |
@@ -30,11 +30,13 @@ jobs:
       - name: Build user-service
         run: |
           cd user-service
+          ./gradlew wrapper --gradle-version 8.5
           ./gradlew build
 
       - name: Build order-service
         run: |
           cd order-service
+          ./gradlew wrapper --gradle-version 8.5
           ./gradlew build
 
       - name: Setup Docker
