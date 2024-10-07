@@ -18,6 +18,12 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y docker-compose
 
+      - name: Verify repository contents
+        run: |
+          ls -la
+          cd ESND || echo "ESND directory does not exist!"
+          ls -la    
+
       - name: Build and run services with Docker Compose
         run: |
           docker-compose up -d --build
