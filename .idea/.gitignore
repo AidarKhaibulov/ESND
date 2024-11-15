@@ -6,3 +6,11 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+/.name
+/compiler.xml
+/modules/order-service/esnd.order-service.main.iml
+/modules/user-service/esnd.user-service.main.iml
+/gradle.xml
+/jarRepositories.xml
+/misc.xml
+/modules.xml
